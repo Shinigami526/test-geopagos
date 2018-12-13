@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from "redux";
-import promiseMiddleware from "redux-promise-middleware";
 import CombineReducer from "./reducers/CombineReducer";
+import promiseMiddleware from "redux-promise-middleware";
 
 const initialState = {};
 export default function configureStore() {

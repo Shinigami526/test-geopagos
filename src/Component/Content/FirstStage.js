@@ -17,6 +17,11 @@ class FirstStage extends Component {
     });
     this._handleCuilChange({ target: { value: cuil || "" } });
   }
+  _handleFullName = e => {
+    this.setState({
+      fullName: e.target.value
+    })
+  }
 
   _handleCuilChange = e => {
     const cuil = this._onlyNumber(e.target.value);
@@ -107,7 +112,7 @@ class FirstStage extends Component {
             aria-describedby="fullName"
             placeholder="Nombre completo"
             value={fullName}
-            onChange={e => this.setState({ fullName: e.target.value })}
+            onChange={this._handleFullName}
             onFocus={() => this._resetError("fullName")}
           />
           <div className="invalid-feedback">{errors["fullName"]}</div>

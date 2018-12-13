@@ -12,12 +12,6 @@ class ThirdStage extends Component {
     errors: {}
   };
 
-  _handlePasswordChange(e) {
-    this.setState({
-      password: e.target.value
-    });
-  }
-
   _togglePassword(event) {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
@@ -113,7 +107,7 @@ class ThirdStage extends Component {
             !_.isEmpty(errors["password"]) ? "is-invalid" : ""
           }`}
         >
-          <label for="password" className="text-primary">
+          <label htmlFor="password" className="text-primary">
             Contraseña
           </label>
           <input
@@ -136,7 +130,7 @@ class ThirdStage extends Component {
             id="showPassword"
             onClick={this._togglePassword.bind(this)}
           />
-          <label className="form-check-label text-muted" for="showPassword">
+          <label className="form-check-label text-muted" htmlFor="showPassword">
             Mostrar contraseña
           </label>
         </div>
