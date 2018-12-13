@@ -12,12 +12,6 @@ class ThirdStage extends Component {
     errors: {}
   };
 
-  _handleEmailChange(e) {
-    this.setState({
-      email: e.target.value
-    });
-  }
-
   _handlePasswordChange(e) {
     this.setState({
       password: e.target.value
@@ -92,12 +86,12 @@ class ThirdStage extends Component {
   }
 
   render() {
-    const { email, errors, showPassword, password } = this.state;
+    const { email, password, showPassword, errors } = this.state;
     return (
       <form>
         <div
           className={`form-group ${
-            !_.isEmpty(this.state.errors["email"]) ? "is-invalid" : ""
+            !_.isEmpty(errors["email"]) ? "is-invalid" : ""
           }`}
         >
           <label htmlFor="email" className="text-primary">
@@ -112,7 +106,7 @@ class ThirdStage extends Component {
             onChange={e => this.setState({ email: e.target.value })}
             onFocus={this._resetError.bind(this, "email")}
           />
-          <div className="invalid-feedback">{this.state.errors["email"]}</div>
+          <div className="invalid-feedback">{errors["email"]}</div>
         </div>
         <div
           className={`form-group ${
@@ -128,10 +122,12 @@ class ThirdStage extends Component {
             id="password"
             placeholder="Debe ser alfanumérica de al menos 8 caracteres"
             value={password}
-            onChange={this._handlePasswordChange.bind(this)}
+            onChange={e => this.setState({ password: e.target.value })}
             onFocus={this._resetError.bind(this, "password")}
           />
-          <div className="invalid-feedback">{errors["password"]}</div>
+          <div className="invalid-feedback">
+            {this.state.errors["password"]}
+          </div>
         </div>
         <div className="form-check pb-5 ">
           <input

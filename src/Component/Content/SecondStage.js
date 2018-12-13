@@ -14,45 +14,45 @@ class SecondStage extends Component {
     errors: {}
   };
 
-  _handleStreetNumberChange(e) {
+  _handleStreetNumberChange = e => {
     const number = this._onlyNumber(e.target.value);
 
     this.setState({
       streetNumber: number
     });
-  }
+  };
 
-  _handleProvinceChange(value) {
+  _handleProvinceChange = value => {
     this.setState({ province: value, location: null });
     this.props.getLocation(value.value);
-  }
+  };
 
-  _handleLocationChange(value) {
+  _handleLocationChange = value => {
     this.setState({ location: value });
-  }
+  };
 
-  _resetError(name) {
+  _resetError = name => {
     let error = {};
     error[name] = null;
 
     this.setState({ errors: Object.assign({}, this.state.errors, error) });
-  }
+  };
 
-  _renderLocationSpinner() {
+  _renderLocationSpinner = () => {
     if (this.props.pending) {
       return <img src={spinner} className="input-spinner" alt="spinner" />;
     }
-  }
+  };
 
-  _onlyNumber(str) {
+  _onlyNumber = str => {
     return str.replace(/\D+/g, "");
-  }
+  };
 
-  _prevStep() {
+  _prevStep = () => {
     this.props.updateHandler({ step: 0 });
-  }
+  };
 
-  _submit() {
+  _submit = () => {
     const fields = {
       streetName: this.state.streetName,
       streetNumber: this.state.streetNumber,
@@ -96,10 +96,11 @@ class SecondStage extends Component {
         step: 2
       });
     }
-  }
+  };
 
   render() {
     const { streetName, streetNumber, province, location, errors } = this.state;
+    const { provinces, locations, pending } = this.props;
     return (
       <form>
         <div className="row mb-4">
@@ -119,7 +120,7 @@ class SecondStage extends Component {
                 placeholder="Ej: Av. de Mayo"
                 value={streetName}
                 onChange={e => this.setState({ streetName: e.target.value })}
-                onFocus={this._resetError.bind(this, "streetName")}
+                onFocus={() => this._resetError("streetName")}
               />
               <div className="invalid-feedback">{errors["streetName"]}</div>
             </div>
@@ -139,8 +140,8 @@ class SecondStage extends Component {
                 id="streetNumber"
                 placeholder="Ej: 3651"
                 value={streetNumber}
-                onChange={this._handleStreetNumberChange.bind(this)}
-                onFocus={this._resetError.bind(this, "streetNumber")}
+                onChange={this._handleStreetNumberChange}
+                onFocus={() => this._resetError("streetNumber")}
               />
               <div className="invalid-feedback">{errors["streetNumber"]}</div>
             </div>
@@ -168,11 +169,11 @@ class SecondStage extends Component {
                   }
                 })}
                 classNamePrefix="react-select"
-                options={this.props.provinces}
-                value={this.state.province}
+                options={provinces}
+                value={province}
                 placeholder="Provincia"
-                onChange={this._handleProvinceChange.bind(this)}
-                onFocus={this._resetError.bind(this, "province")}
+                onChange={this._handleProvinceChange}
+                onFocus={() => this._resetError("province")}
                 clearable={false}
               />
               <div className="invalid-feedback">{errors["province"]}</div>
@@ -199,13 +200,13 @@ class SecondStage extends Component {
                     }
                   })}
                   classNamePrefix="react-select"
-                  options={this.props.locations}
+                  options={locations}
                   value={location}
                   placeholder="Localidad"
-                  onChange={this._handleLocationChange.bind(this)}
-                  onFocus={this._resetError.bind(this, "location")}
+                  onChange={this._handleLocationChange}
+                  onFocus={() => this._resetError("location")}
                   clearable={false}
-                  isDisabled={this.props.pending}
+                  isDisabled={pending}
                 />
                 {this._renderLocationSpinner()}
               </div>
@@ -214,10 +215,7 @@ class SecondStage extends Component {
           </div>
         </div>
 
-        <Footer
-          prevStep={this._prevStep.bind(this)}
-          submit={this._submit.bind(this)}
-        />
+        <Footer prevStep={this._prevStep} submit={this._submit} />
       </form>
     );
   }

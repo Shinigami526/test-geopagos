@@ -12,7 +12,7 @@
       "react/prop-types": 0,
       "jsx-a11y/label-has-for": [ 2, {
         "labelComponents": ["CustomInputLabel"],
-        "labelAttributes": ["label", "className"],
+        "labelAttributes": ["label", "className", "for", "htmlFor"],
         "controlComponents": ["CustomInput"],
         "depth": 3,
         "required": {
@@ -23,7 +23,7 @@
       "jsx-a11y/label-has-associated-control": [ 2, {
         "components": [ "Label" ],
         "labelComponents": ["label"],
-        "labelAttributes": ["htmlFor", "for"],
+        "labelAttributes": ["htmlFor", "for", "className"],
         "controlComponents": ["input"]
       }],
       "no-console": 1,

@@ -18,7 +18,7 @@ class FirstStage extends Component {
     this._handleCuilChange({ target: { value: cuil || "" } });
   }
 
-  _handleCuilChange(e) {
+  _handleCuilChange = e => {
     const cuil = this._onlyNumber(e.target.value);
     let mask = cuil;
 
@@ -37,20 +37,20 @@ class FirstStage extends Component {
     this.setState({
       cuil: mask
     });
-  }
+  };
 
-  _resetError(name) {
+  _resetError = name => {
     let error = {};
     error[name] = null;
 
     this.setState({ errors: Object.assign({}, this.state.errors, error) });
-  }
+  };
 
-  _onlyNumber(str) {
+  _onlyNumber = str => {
     return str.replace(/\D+/g, "");
-  }
+  };
 
-  _submit() {
+  _submit = () => {
     const fields = {
       fullName: this.state.fullName,
       cuil: this._onlyNumber(this.state.cuil)
@@ -88,7 +88,7 @@ class FirstStage extends Component {
         step: 1
       });
     }
-  }
+  };
 
   render() {
     const { fullName, cuil, errors } = this.state;
@@ -108,7 +108,7 @@ class FirstStage extends Component {
             placeholder="Nombre completo"
             value={fullName}
             onChange={e => this.setState({ fullName: e.target.value })}
-            onFocus={this._resetError.bind(this, "fullName")}
+            onFocus={() => this._resetError("fullName")}
           />
           <div className="invalid-feedback">{errors["fullName"]}</div>
         </div>
@@ -124,16 +124,16 @@ class FirstStage extends Component {
             id="cuil"
             placeholder="Ej: 23-45678901-2"
             value={cuil}
-            onChange={this._handleCuilChange.bind(this)}
-            onFocus={this._resetError.bind(this, "cuil")}
+            onChange={this._handleCuilChange}
+            onFocus={() => this._resetError("cuil")}
           />
-          <div className="invalid-feedback">{this.state.errors["cuil"]}</div>
+          <div className="invalid-feedback">{errors["cuil"]}</div>
         </div>
         <div className="mt-5 d-flex justify-content-end">
           <button
             type="button"
             className="btn btn-primary col-sm-6"
-            onClick={this._submit.bind(this)}
+            onClick={this._submit}
           >
             Siguiente
           </button>
