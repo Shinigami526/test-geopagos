@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class Header extends Component {
-
   _isActive(step, index) {
-    return step === index ? 'active' : '';
+    return step === index ? "active" : "";
   }
 
   render() {

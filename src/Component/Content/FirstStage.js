@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
-//import { validate } from './validator';
-import _ from 'lodash';
+import React, { Component } from "react";
+import { validate } from "../Validate/valid";
+import _ from "lodash";
 
-class step1 extends Component {
-
-     state = {
-      fullName: '',
-      cuil: '',
-      errors: {}
-    };
+class FirstStage extends Component {
+  state = {
+    fullName: "",
+    cuil: "",
+    errors: {}
+  };
 
   componentWillMount() {
     const { fullName, cuil } = this.props.state;
@@ -16,7 +15,7 @@ class step1 extends Component {
     this.setState({
       fullName: fullName
     });
-    this._handleCuilChange({ target: { value: cuil || '' } });
+    this._handleCuilChange({ target: { value: cuil || "" } });
   }
 
   _handleFullNameChange(e) {
@@ -34,11 +33,11 @@ class step1 extends Component {
     }
 
     if (cuil.length > 2) {
-      mask = cuil.replace(/(\d{2})/, '$1-');
+      mask = cuil.replace(/(\d{2})/, "$1-");
     }
 
     if (cuil.length > 10) {
-      mask = cuil.replace(/(\d{2})(\d{8})(\d{1})/, '$1-$2-$3');
+      mask = cuil.replace(/(\d{2})(\d{8})(\d{1})/, "$1-$2-$3");
     }
 
     this.setState({
@@ -54,7 +53,7 @@ class step1 extends Component {
   }
 
   _onlyNumber(str) {
-    return str.replace(/\D+/g, '');
+    return str.replace(/\D+/g, "");
   }
 
   _submit() {
@@ -67,21 +66,21 @@ class step1 extends Component {
       fullName: {
         presence: {
           allowEmpty: false,
-          message: '^Ingrese nombre completo.'
+          message: "^Ingrese nombre completo."
         },
         length: {
           minimum: 2,
-          message: '^El nombre es muy corto.'
+          message: "^El nombre es muy corto."
         }
       },
       cuil: {
         presence: {
           allowEmpty: false,
-          message: '^Ingrese número de cuil.'
+          message: "^Ingrese número de cuil."
         },
         length: {
           minimum: 11,
-          message: '^El número de cuil debe ser de 11 digitos.'
+          message: "^El número de cuil debe ser de 11 digitos."
         }
       }
     });
@@ -102,7 +101,7 @@ class step1 extends Component {
       <form>
         <div
           className={`form-group ${
-            !_.isEmpty(this.state.errors['fullName']) ? 'is-invalid' : ''
+            !_.isEmpty(this.state.errors["fullName"]) ? "is-invalid" : ""
           }`}
         >
           <label className="text-primary">Nombre completo</label>
@@ -114,15 +113,15 @@ class step1 extends Component {
             placeholder="Nombre completo"
             value={this.state.fullName}
             onChange={this._handleFullNameChange.bind(this)}
-            onFocus={this._resetError.bind(this, 'fullName')}
+            onFocus={this._resetError.bind(this, "fullName")}
           />
           <div className="invalid-feedback">
-            {this.state.errors['fullName']}
+            {this.state.errors["fullName"]}
           </div>
         </div>
         <div
           className={`form-group pb-5 ${
-            !_.isEmpty(this.state.errors['cuil']) ? 'is-invalid' : ''
+            !_.isEmpty(this.state.errors["cuil"]) ? "is-invalid" : ""
           }`}
         >
           <label className="text-primary">N de CUIL</label>
@@ -133,9 +132,9 @@ class step1 extends Component {
             placeholder="Ej: 23-45678901-2"
             value={this.state.cuil}
             onChange={this._handleCuilChange.bind(this)}
-            onFocus={this._resetError.bind(this, 'cuil')}
+            onFocus={this._resetError.bind(this, "cuil")}
           />
-          <div className="invalid-feedback">{this.state.errors['cuil']}</div>
+          <div className="invalid-feedback">{this.state.errors["cuil"]}</div>
         </div>
         <div className="mt-5 d-flex justify-content-end">
           <button
@@ -151,4 +150,4 @@ class step1 extends Component {
   }
 }
 
-export default step1;
+export default FirstStage;

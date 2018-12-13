@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
-import _ from 'lodash';
-import Select from 'react-select';
-import { validate } from './validator';
-import spinner from '../spinner.svg';
+import React, { Component } from "react";
+import _ from "lodash";
+import Select from "react-select";
+import { validate } from "../Validate/valid";
+import spinner from "../../assets/spinner.svg";
 
-class step2 extends Component {
-
+class SecondStage extends Component {
   constructor(props) {
     super(props);
     const { streetName, streetNumber, province, location } = this.props.state;
 
     this.state = {
-      streetName: streetName || '',
-      streetNumber: streetNumber || '',
+      streetName: streetName || "",
+      streetNumber: streetNumber || "",
       province: province || null,
       location: location || null,
       errors: {}
@@ -56,7 +55,7 @@ class step2 extends Component {
   }
 
   _onlyNumber(str) {
-    return str.replace(/\D+/g, '');
+    return str.replace(/\D+/g, "");
   }
 
   _prevStep() {
@@ -75,25 +74,25 @@ class step2 extends Component {
       streetName: {
         presence: {
           allowEmpty: false,
-          message: '^Ingrese calle.'
+          message: "^Ingrese calle."
         }
       },
       streetNumber: {
         presence: {
           allowEmpty: false,
-          message: '^Ingrese número.'
+          message: "^Ingrese número."
         }
       },
       province: {
         presence: {
           allowEmpty: false,
-          message: '^Seleccione provincia.'
+          message: "^Seleccione provincia."
         }
       },
       location: {
         presence: {
           allowEmpty: false,
-          message: '^Seleccione localidad.'
+          message: "^Seleccione localidad."
         }
       }
     });
@@ -116,7 +115,7 @@ class step2 extends Component {
           <div className="col-sm-8">
             <div
               className={`form-group ${
-                !_.isEmpty(this.state.errors['streetName']) ? 'is-invalid' : ''
+                !_.isEmpty(this.state.errors["streetName"]) ? "is-invalid" : ""
               }`}
             >
               <label for="streetName" className="text-primary">
@@ -129,19 +128,19 @@ class step2 extends Component {
                 placeholder="Ej: Av. de Mayo"
                 value={this.state.streetName}
                 onChange={this._handleStreetNameChange.bind(this)}
-                onFocus={this._resetError.bind(this, 'streetName')}
+                onFocus={this._resetError.bind(this, "streetName")}
               />
               <div className="invalid-feedback">
-                {this.state.errors['streetName']}
+                {this.state.errors["streetName"]}
               </div>
             </div>
           </div>
           <div className="col-sm-4">
             <div
               className={`form-group ${
-                !_.isEmpty(this.state.errors['streetNumber'])
-                  ? 'is-invalid'
-                  : ''
+                !_.isEmpty(this.state.errors["streetNumber"])
+                  ? "is-invalid"
+                  : ""
               }`}
             >
               <label for="streetNumber" className="text-primary">
@@ -154,10 +153,10 @@ class step2 extends Component {
                 placeholder="Ej: 3651"
                 value={this.state.streetNumber}
                 onChange={this._handleStreetNumberChange.bind(this)}
-                onFocus={this._resetError.bind(this, 'streetNumber')}
+                onFocus={this._resetError.bind(this, "streetNumber")}
               />
               <div className="invalid-feedback">
-                {this.state.errors['streetNumber']}
+                {this.state.errors["streetNumber"]}
               </div>
             </div>
           </div>
@@ -167,7 +166,7 @@ class step2 extends Component {
           <div className="col-sm-6">
             <div
               className={`form-group ${
-                !_.isEmpty(this.state.errors['province']) ? 'is-invalid' : ''
+                !_.isEmpty(this.state.errors["province"]) ? "is-invalid" : ""
               }`}
             >
               <label className="text-primary">Provincia</label>
@@ -180,7 +179,7 @@ class step2 extends Component {
                   borderRadius: 0,
                   colors: {
                     ...theme.colors,
-                    primary: '#0058CC'
+                    primary: "#0058CC"
                   }
                 })}
                 classNamePrefix="react-select"
@@ -188,18 +187,18 @@ class step2 extends Component {
                 value={this.state.province}
                 placeholder="Provincia"
                 onChange={this._handleProvinceChange.bind(this)}
-                onFocus={this._resetError.bind(this, 'province')}
+                onFocus={this._resetError.bind(this, "province")}
                 clearable={false}
               />
               <div className="invalid-feedback">
-                {this.state.errors['province']}
+                {this.state.errors["province"]}
               </div>
             </div>
           </div>
           <div className="col-sm-6">
             <div
               className={`form-group ${
-                !_.isEmpty(this.state.errors['location']) ? 'is-invalid' : ''
+                !_.isEmpty(this.state.errors["location"]) ? "is-invalid" : ""
               }`}
             >
               <label className="text-primary">Localidad</label>
@@ -213,7 +212,7 @@ class step2 extends Component {
                     borderRadius: 0,
                     colors: {
                       ...theme.colors,
-                      primary: '#0058CC'
+                      primary: "#0058CC"
                     }
                   })}
                   classNamePrefix="react-select"
@@ -221,14 +220,14 @@ class step2 extends Component {
                   value={this.state.location}
                   placeholder="Localidad"
                   onChange={this._handleLocationChange.bind(this)}
-                  onFocus={this._resetError.bind(this, 'location')}
+                  onFocus={this._resetError.bind(this, "location")}
                   clearable={false}
                   isDisabled={this.props.pending}
                 />
                 {this._renderLocationSpinner()}
               </div>
               <div className="invalid-feedback">
-                {this.state.errors['location']}
+                {this.state.errors["location"]}
               </div>
             </div>
           </div>
@@ -259,4 +258,4 @@ class step2 extends Component {
   }
 }
 
-export default step2;
+export default SecondStage;

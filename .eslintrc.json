@@ -10,8 +10,11 @@
     ],
     "rules": {
       "react/prop-types": 0,
-      "import/named": 2,
-      "jsx-a11y/label-has-for": 0,
+      "jsx-a11y/label-has-for": [ 2, {
+        "required": {
+            "some": [ "nesting", "id" ]
+        }
+      }],
       "no-console": 1,
       "react/jsx-uses-react": "error",
       "react/jsx-uses-vars": "error",
@@ -41,7 +44,7 @@
           "react": {
             "createClass": "createReactClass", 
             "pragma": "React",  
-            "version": "16.5.2", 
+            "version": "16.6.3", 
             "flowVersion": "0.53" 
           },
           "propWrapperFunctions": [ "forbidExtraProps" ] 

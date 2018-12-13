@@ -20,7 +20,7 @@ const getProvinces = () => {
     return {
       type: 'POST_FORM',
       payload: fetch(
-        `http://www.mocky.io/v2/${}?mocky-delay=500ms`,
+        `http://www.mocky.io/v2/2161145215546665?mocky-delay=500ms`,
         {
           method: 'POST',
           body: JSON.stringify(params)
