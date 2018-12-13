@@ -7,7 +7,7 @@ const Footer = props => {
         <button
           type="button"
           className="btn btn-primary outline btn-block"
-          onClick={props._prevStep}
+          onClick={props.prevStep}
         >
           Atrás
         </button>
@@ -16,7 +16,7 @@ const Footer = props => {
         <button
           type="button"
           className="btn btn-primary btn-block"
-          onClick={props._submit}
+          onClick={props.submit}
         >
           Siguiente
         </button>

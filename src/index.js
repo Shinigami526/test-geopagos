@@ -3,6 +3,4 @@ import { render } from "react-dom";
 import "./styles/Styles.scss";
 import App from "./Container/App";
 
-
-render(<App />,document.getElementById("root")
-);
+render(<App />, document.getElementById("root"));

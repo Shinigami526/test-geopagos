@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
-import { getProvinces, getLocations, postForm } from "../data/data";
-import Header from "../Component/Header/Header";
-import FirstStage from "../Component/Content/FirstStage";
-import SecondStage from "../Component/Content/SecondStage";
-import ThirdStage from "../Component/Content/ThirdStage";
-import success from "../assets/success.svg";
+import { getProvinces, getLocations, postForm } from "../../data/data";
+import Header from "../../Component/Header/Header";
+import FirstStage from "../../Component/Content/FirstStage";
+import SecondStage from "../../Component/Content/SecondStage";
+import ThirdStage from "../../Component/Content/ThirdStage";
+import success from "../../assets/success.svg";
 
 class Entry extends Component {
   constructor(props) {

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { validate } from "../Validate/valid";
+import Footer from "../Footer/Footer";
 import _ from "lodash";
 import spinner from "../../assets/spinner-white.svg";
 
 class ThirdStage extends Component {
-
   constructor(props) {
     super(props);
     const { email, password } = this.props.state;
@@ -150,26 +150,11 @@ class ThirdStage extends Component {
             Mostrar contraseña
           </label>
         </div>
-        <div className="mt-5 row">
-          <div className="col-sm-6 mb-3">
-            <button
-              type="button"
-              className="btn btn-primary outline btn-block"
-              onClick={this._prevStep.bind(this)}
-            >
-              Atrás
-            </button>
-          </div>
-          <div className="col-sm-6">
-            <button
-              type="button"
-              className="btn btn-primary btn-block"
-              onClick={this._submit.bind(this)}
-            >
-              {this._renderButtonContent()}
-            </button>
-          </div>
-        </div>
+
+        <Footer
+          prevStep={this._prevStep.bind(this)}
+          submit={this._submit.bind(this)}
+        />
       </form>
     );
   }

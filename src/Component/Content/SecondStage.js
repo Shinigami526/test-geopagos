@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import _ from "lodash";
 import Select from "react-select";
 import { validate } from "../Validate/valid";
+import Footer from "../Footer/Footer";
 import spinner from "../../assets/spinner.svg";
 
 class SecondStage extends Component {
@@ -233,26 +234,10 @@ class SecondStage extends Component {
           </div>
         </div>
 
-        <div className="mt-5 row">
-          <div className="col-sm-6 mb-3">
-            <button
-              type="button"
-              className="btn btn-primary outline btn-block"
-              onClick={this._prevStep.bind(this)}
-            >
-              Atrás
-            </button>
-          </div>
-          <div className="col-sm-6">
-            <button
-              type="button"
-              className="btn btn-primary btn-block"
-              onClick={this._submit.bind(this)}
-            >
-              Siguiente
-            </button>
-          </div>
-        </div>
+        <Footer
+          prevStep={this._prevStep.bind(this)}
+          submit={this._submit.bind(this)}
+        />
       </form>
     );
   }
