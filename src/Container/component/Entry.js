@@ -9,14 +9,11 @@ import ThirdStage from "../../Component/Content/ThirdStage";
 import success from "../../assets/success.svg";
 
 class Entry extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
+      state = {
       fields: {},
       step: 0
     };
-  }
 
   componentWillMount() {
     this.props.onGetProvinces();

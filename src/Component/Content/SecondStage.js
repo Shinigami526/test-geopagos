@@ -6,18 +6,14 @@ import Footer from "../Footer/Footer";
 import spinner from "../../assets/spinner.svg";
 
 class SecondStage extends Component {
-  constructor(props) {
-    super(props);
-    const { streetName, streetNumber, province, location } = this.props.state;
-
-    this.state = {
-      streetName: streetName || "",
-      streetNumber: streetNumber || "",
-      province: province || null,
-      location: location || null,
+  
+     state = {
+      streetName: this.props.state.streetName || "",
+      streetNumber: this.props.state.streetNumber || "",
+      province: this.props.state.province || null,
+      location: this.props.state.location || null,
       errors: {}
     };
-  }
 
   _handleStreetNameChange(e) {
     this.setState({

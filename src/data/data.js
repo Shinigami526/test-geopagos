@@ -20,7 +20,7 @@ const postForm = params => {
   return {
     type: "POST_FORM",
     payload: fetch(
-      `http://www.mocky.io/v2/2161145215546665?mocky-delay=500ms`,
+      `http://www.mocky.io/v2/5185415ba171ea3a00704eed?mocky-delay=500ms`,
       {
         method: "POST",
         body: JSON.stringify(params)

@@ -11,9 +11,20 @@
     "rules": {
       "react/prop-types": 0,
       "jsx-a11y/label-has-for": [ 2, {
+        "labelComponents": ["CustomInputLabel"],
+        "labelAttributes": ["label", "className"],
+        "controlComponents": ["CustomInput"],
+        "depth": 3,
         "required": {
-            "some": [ "nesting", "id" ]
-        }
+          "every": [ "nesting", "id" ]
+      },
+      "allowChildren": false
+      }],
+      "jsx-a11y/label-has-associated-control": [ 2, {
+        "components": [ "Label" ],
+        "labelComponents": ["label"],
+        "labelAttributes": ["htmlFor", "for"],
+        "controlComponents": ["input"]
       }],
       "no-console": 1,
       "react/jsx-uses-react": "error",
