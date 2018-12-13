@@ -5,17 +5,12 @@ import _ from "lodash";
 import spinner from "../../assets/spinner-white.svg";
 
 class ThirdStage extends Component {
-  constructor(props) {
-    super(props);
-    const { email, password } = this.props.state;
-
-    this.state = {
-      email: email || "",
-      password: password || "",
-      showPassword: false,
-      errors: {}
-    };
-  }
+  state = {
+    email: this.props.email || "",
+    password: this.props.password || "",
+    showPassword: false,
+    errors: {}
+  };
 
   _handleEmailChange(e) {
     this.setState({
@@ -97,6 +92,7 @@ class ThirdStage extends Component {
   }
 
   render() {
+    const { email, errors, showPassword, password } = this.state;
     return (
       <form>
         <div
@@ -104,7 +100,7 @@ class ThirdStage extends Component {
             !_.isEmpty(this.state.errors["email"]) ? "is-invalid" : ""
           }`}
         >
-          <label for="email" className="text-primary">
+          <label htmlFor="email" className="text-primary">
             E-mail
           </label>
           <input
@@ -112,41 +108,39 @@ class ThirdStage extends Component {
             className="form-control"
             id="email"
             placeholder="Ingresá tu dirección de correo"
-            value={this.state.email}
-            onChange={this._handleEmailChange.bind(this)}
+            value={email}
+            onChange={e => this.setState({ email: e.target.value })}
             onFocus={this._resetError.bind(this, "email")}
           />
           <div className="invalid-feedback">{this.state.errors["email"]}</div>
         </div>
         <div
           className={`form-group ${
-            !_.isEmpty(this.state.errors["password"]) ? "is-invalid" : ""
+            !_.isEmpty(errors["password"]) ? "is-invalid" : ""
           }`}
         >
           <label for="password" className="text-primary">
             Contraseña
           </label>
           <input
-            type={`${this.state.showPassword ? "text" : "password"}`}
+            type={`${showPassword ? "text" : "password"}`}
             className="form-control"
             id="password"
             placeholder="Debe ser alfanumérica de al menos 8 caracteres"
-            value={this.state.password}
+            value={password}
             onChange={this._handlePasswordChange.bind(this)}
             onFocus={this._resetError.bind(this, "password")}
           />
-          <div className="invalid-feedback">
-            {this.state.errors["password"]}
-          </div>
+          <div className="invalid-feedback">{errors["password"]}</div>
         </div>
-        <div class="form-check pb-5 ">
+        <div className="form-check pb-5 ">
           <input
             type="checkbox"
-            class="form-check-input"
+            className="form-check-input"
             id="showPassword"
             onClick={this._togglePassword.bind(this)}
           />
-          <label class="form-check-label text-muted" for="showPassword">
+          <label className="form-check-label text-muted" for="showPassword">
             Mostrar contraseña
           </label>
         </div>

@@ -18,12 +18,6 @@ class FirstStage extends Component {
     this._handleCuilChange({ target: { value: cuil || "" } });
   }
 
-  _handleFullNameChange(e) {
-    this.setState({
-      fullName: e.target.value
-    });
-  }
-
   _handleCuilChange(e) {
     const cuil = this._onlyNumber(e.target.value);
     let mask = cuil;
@@ -97,11 +91,12 @@ class FirstStage extends Component {
   }
 
   render() {
+    const { fullName, cuil, errors } = this.state;
     return (
       <form>
         <div
           className={`form-group ${
-            !_.isEmpty(this.state.errors["fullName"]) ? "is-invalid" : ""
+            !_.isEmpty(errors["fullName"]) ? "is-invalid" : ""
           }`}
         >
           <label className="text-primary">Nombre completo</label>
@@ -111,17 +106,15 @@ class FirstStage extends Component {
             id="fullName"
             aria-describedby="fullName"
             placeholder="Nombre completo"
-            value={this.state.fullName}
-            onChange={this._handleFullNameChange.bind(this)}
+            value={fullName}
+            onChange={e => this.setState({ fullName: e.target.value })}
             onFocus={this._resetError.bind(this, "fullName")}
           />
-          <div className="invalid-feedback">
-            {this.state.errors["fullName"]}
-          </div>
+          <div className="invalid-feedback">{errors["fullName"]}</div>
         </div>
         <div
           className={`form-group pb-5 ${
-            !_.isEmpty(this.state.errors["cuil"]) ? "is-invalid" : ""
+            !_.isEmpty(errors["cuil"]) ? "is-invalid" : ""
           }`}
         >
           <label className="text-primary">N de CUIL</label>
@@ -130,7 +123,7 @@ class FirstStage extends Component {
             className="form-control"
             id="cuil"
             placeholder="Ej: 23-45678901-2"
-            value={this.state.cuil}
+            value={cuil}
             onChange={this._handleCuilChange.bind(this)}
             onFocus={this._resetError.bind(this, "cuil")}
           />

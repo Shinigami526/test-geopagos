@@ -39,9 +39,9 @@ html,
   width: 640px;
   min-height: 560px;
   padding: 80px 120px;
-  -webkit-box-shadow: 0px 0px 21px 1px rgba(0, 0, 0, 0.12);
-  -moz-box-shadow: 0px 0px 21px 1px rgba(0, 0, 0, 0.12);
-  box-shadow: 0px 0px 21px 1px rgba(0, 0, 0, 0.12);
+  -webkit-box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  box-shadow: $shadow;
 }
 
 @media (max-width: 575px) {
@@ -49,6 +49,10 @@ html,
     padding: 80px 40px;
   }
 }
+
+/*   .mb-5, .my-5 {
+        margin-bottom: 0;
+    }*/
 
 .form-control,
 .react-select__single-value,
@@ -82,15 +86,15 @@ label {
 }
 
 .react-select__control--is-focused {
-  box-shadow: none !important;
+  box-shadow: none;
 }
 
 .react-select__indicator-separator {
-  width: 0 !important;
+  width: 0;
 }
 
 .react-select__indicator {
-  color: #686868 !important;
+  color: #686868;
 }
 
 .input-spinner {

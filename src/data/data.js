@@ -26,6 +26,8 @@ const postForm = params => {
         body: JSON.stringify(params)
       }
     )
+      .then(response => response.json())
+      .then(response => console.log(response))
   };
 };
 

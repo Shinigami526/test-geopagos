@@ -6,20 +6,13 @@ import Footer from "../Footer/Footer";
 import spinner from "../../assets/spinner.svg";
 
 class SecondStage extends Component {
-  
-     state = {
-      streetName: this.props.state.streetName || "",
-      streetNumber: this.props.state.streetNumber || "",
-      province: this.props.state.province || null,
-      location: this.props.state.location || null,
-      errors: {}
-    };
-
-  _handleStreetNameChange(e) {
-    this.setState({
-      streetName: e.target.value
-    });
-  }
+  state = {
+    streetName: this.props.state.streetName || "",
+    streetNumber: this.props.state.streetNumber || "",
+    province: this.props.state.province || null,
+    location: this.props.state.location || null,
+    errors: {}
+  };
 
   _handleStreetNumberChange(e) {
     const number = this._onlyNumber(e.target.value);
@@ -106,16 +99,17 @@ class SecondStage extends Component {
   }
 
   render() {
+    const { streetName, streetNumber, province, location, errors } = this.state;
     return (
       <form>
         <div className="row mb-4">
           <div className="col-sm-8">
             <div
               className={`form-group ${
-                !_.isEmpty(this.state.errors["streetName"]) ? "is-invalid" : ""
+                !_.isEmpty(errors["streetName"]) ? "is-invalid" : ""
               }`}
             >
-              <label for="streetName" className="text-primary">
+              <label htmlFor="streetName" className="text-primary">
                 Calle
               </label>
               <input
@@ -123,21 +117,17 @@ class SecondStage extends Component {
                 className="form-control"
                 id="streetName"
                 placeholder="Ej: Av. de Mayo"
-                value={this.state.streetName}
-                onChange={this._handleStreetNameChange.bind(this)}
+                value={streetName}
+                onChange={e => this.setState({ streetName: e.target.value })}
                 onFocus={this._resetError.bind(this, "streetName")}
               />
-              <div className="invalid-feedback">
-                {this.state.errors["streetName"]}
-              </div>
+              <div className="invalid-feedback">{errors["streetName"]}</div>
             </div>
           </div>
           <div className="col-sm-4">
             <div
               className={`form-group ${
-                !_.isEmpty(this.state.errors["streetNumber"])
-                  ? "is-invalid"
-                  : ""
+                !_.isEmpty(errors["streetNumber"]) ? "is-invalid" : ""
               }`}
             >
               <label for="streetNumber" className="text-primary">
@@ -148,13 +138,11 @@ class SecondStage extends Component {
                 className="form-control"
                 id="streetNumber"
                 placeholder="Ej: 3651"
-                value={this.state.streetNumber}
+                value={streetNumber}
                 onChange={this._handleStreetNumberChange.bind(this)}
                 onFocus={this._resetError.bind(this, "streetNumber")}
               />
-              <div className="invalid-feedback">
-                {this.state.errors["streetNumber"]}
-              </div>
+              <div className="invalid-feedback">{errors["streetNumber"]}</div>
             </div>
           </div>
         </div>
@@ -163,7 +151,7 @@ class SecondStage extends Component {
           <div className="col-sm-6">
             <div
               className={`form-group ${
-                !_.isEmpty(this.state.errors["province"]) ? "is-invalid" : ""
+                !_.isEmpty(errors["province"]) ? "is-invalid" : ""
               }`}
             >
               <label className="text-primary">Provincia</label>
@@ -187,15 +175,13 @@ class SecondStage extends Component {
                 onFocus={this._resetError.bind(this, "province")}
                 clearable={false}
               />
-              <div className="invalid-feedback">
-                {this.state.errors["province"]}
-              </div>
+              <div className="invalid-feedback">{errors["province"]}</div>
             </div>
           </div>
           <div className="col-sm-6">
             <div
               className={`form-group ${
-                !_.isEmpty(this.state.errors["location"]) ? "is-invalid" : ""
+                !_.isEmpty(errors["location"]) ? "is-invalid" : ""
               }`}
             >
               <label className="text-primary">Localidad</label>
@@ -214,7 +200,7 @@ class SecondStage extends Component {
                   })}
                   classNamePrefix="react-select"
                   options={this.props.locations}
-                  value={this.state.location}
+                  value={location}
                   placeholder="Localidad"
                   onChange={this._handleLocationChange.bind(this)}
                   onFocus={this._resetError.bind(this, "location")}
@@ -223,9 +209,7 @@ class SecondStage extends Component {
                 />
                 {this._renderLocationSpinner()}
               </div>
-              <div className="invalid-feedback">
-                {this.state.errors["location"]}
-              </div>
+              <div className="invalid-feedback">{errors["location"]}</div>
             </div>
           </div>
         </div>
